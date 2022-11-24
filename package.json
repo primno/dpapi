@@ -1,0 +1,49 @@
+{
+  "name": "@primno/dpapi",
+  "version": "1.0.0-alpha.0",
+  "description": "Pre-built version of DPAPI.",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src",
+    "prebuilds",
+    "binding.gyp"
+  ],
+  "gypfile": true,
+  "scripts": {
+    "install": "node-gyp-build",
+    "build": "tsc && npm run prebuild",
+    "rebuild": "npm run install --build-from-source",
+    "prebuild": "prebuildify --napi --strip"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primno/dpapi.git"
+  },
+  "keywords": [
+    "dpapi",
+    "pre-built"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/primno/dpapi/issues"
+  },
+  "homepage": "https://github.com/primno/dpapi#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "node-gyp": "^9.3.0",
+    "prebuildify": "^5.0.0",
+    "node-addon-api": "^5.0.0"
+  },
+  "dependencies": {
+    "node-gyp-build": "^4.5.0"
+  },
+  "author": "Xavier Monin",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
