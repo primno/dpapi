@@ -1,4 +1,5 @@
 # DPAPI
+[![npm](https://img.shields.io/npm/v/@primno/dpapi.svg)](https://www.npmjs.com/package/@primno/dpapi)
 
 Native module to encrypt data on Windows with DPAPI.
 
