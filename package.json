@@ -1,6 +1,6 @@
 {
   "name": "@primno/dpapi",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "description": "Pre-built version of DPAPI.",
   "main": "dist/index.js",
   "files": [
