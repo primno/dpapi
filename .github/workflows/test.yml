@@ -1,4 +1,4 @@
-name: Build
+name: Test
 
 on:
   push:
@@ -26,3 +26,4 @@ jobs:
         run: |
           npm ci
           npm run build
+          npm run test
