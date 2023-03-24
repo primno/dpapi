@@ -15,7 +15,7 @@
     "build": "tsc && npm run prebuild",
     "rebuild": "npm run install --build-from-source",
     "prebuild": "prebuildify --napi --strip",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "engines": {
     "node": ">=14"
