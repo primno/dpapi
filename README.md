@@ -2,6 +2,7 @@
 [![npm](https://img.shields.io/npm/v/@primno/dpapi.svg)](https://www.npmjs.com/package/@primno/dpapi)
 [![npm](https://img.shields.io/npm/l/@primno/dpapi.svg)](https://github.com/primno/dpapi/blob/main/LICENSE)
 ![build](https://img.shields.io/github/actions/workflow/status/primno/dpapi/test.yml)
+![codecov](https://img.shields.io/codecov/c/github/primno/dpapi)
 
 Native module to encrypt/decrypt data on Windows with DPAPI.
 
