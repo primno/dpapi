@@ -2,13 +2,15 @@
 [![npm](https://img.shields.io/npm/v/@primno/dpapi.svg)](https://www.npmjs.com/package/@primno/dpapi)
 [![npm](https://img.shields.io/npm/l/@primno/dpapi.svg)](https://github.com/primno/dpapi/blob/main/LICENSE)
 ![build](https://img.shields.io/github/actions/workflow/status/primno/dpapi/test.yml)
-![codecov](https://img.shields.io/codecov/c/github/primno/dpapi)
+[![coverage](https://codecov.io/gh/primno/dpapi/branch/main/graph/badge.svg?token=J4AVWIOR9F)](https://codecov.io/gh/primno/dpapi)
 
 Native module to encrypt/decrypt data on Windows with DPAPI.
 
 This native module is **prebuilt** for Node.JS running on Windows. It provides the win32-x64 N-API module.
 
 Based on the port to N-API made by [Microsoft](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/extensions/msal-node-extensions/src/dpapi-addon) in @msal-node-extension from the work of [Brad Hughes](https://github.com/bradhugh/node-dpapi).
+
+> This package is part of the [Primno](https://primno.io) framework.
 
 ## Why this package?
 
