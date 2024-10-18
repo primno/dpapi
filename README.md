@@ -17,7 +17,7 @@ Based on the port to N-API made by [Microsoft](https://github.com/AzureAD/micros
 Other similar packages require to build the native module on the target machine during the installation.
 This means that you must have Python and Visual C++ installed, production environment included.
 
-This package is prebuilt, so you don't need to have build tools installed on the target machine.
+This package is prebuilt, so you don't need to have build tools installed on the target machine. It will compile in other OS but you should add a check and use an alternative encrypt/decrypt method.
 
 ## Install
 
