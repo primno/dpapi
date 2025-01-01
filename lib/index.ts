@@ -40,6 +40,6 @@ catch (e: any) {
     dpapi = new UnsupportedPlatformDpapiBindings(e);
 }
 
-export var IsPlatformSupported : boolean = !(dpapi instanceof UnsupportedPlatformDpapiBindings);
+export var isPlatformSupported : boolean = !(dpapi instanceof UnsupportedPlatformDpapiBindings);
 export var Dpapi: DpapiBindings = dpapi;
 export default Dpapi;
