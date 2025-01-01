@@ -6,7 +6,9 @@
 
 Native module to encrypt/decrypt data on Windows with DPAPI.
 
-This native module is **prebuilt** for Node.JS running on Windows. It provides the win32-x64 N-API module.
+This native module is **prebuilt** for Node.JS running on Windows. It provides the **x64** and the **arm64** N-API modules for Windows.
+
+This package indicates if the prebuilt module is supported on the current platform.
 
 Based on the port to N-API made by [Microsoft](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/extensions/msal-node-extensions/src/dpapi-addon) in @msal-node-extension from the work of [Brad Hughes](https://github.com/bradhugh/node-dpapi).
 
@@ -21,7 +23,7 @@ This package is prebuilt, so you don't need to have build tools installed on the
 
 ## Install
 
-The win32-x64 prebuilt module will be installed with the following command.
+The prebuilt module will be installed with the following command.
 
 ```bash
 npm install @primno/dpapi
@@ -30,28 +32,53 @@ npm install @primno/dpapi
 ## Definition
 
 ```ts
-function protectData(
-    userData: Uint8Array,
-    optionalEntropy: Uint8Array | null,
-    scope: "CurrentUser" | "LocalMachine"
-): Uint8Array;
+class Dpapi {
+    public protectData(
+        userData: Uint8Array,
+        optionalEntropy: Uint8Array | null,
+        scope: "CurrentUser" | "LocalMachine"
+    ): Uint8Array;
 
-function unprotectData(
-    encryptedData: Uint8Array,
-    optionalEntropy: Uint8Array | null,
-    scope: "CurrentUser" | "LocalMachine"
-): Uint8Array;
+    public unprotectData(
+        encryptedData: Uint8Array,
+        optionalEntropy: Uint8Array | null,
+        scope: "CurrentUser" | "LocalMachine"
+    ): Uint8Array;
+}
+
+const isPlatformSupported: boolean;
 ```
 
 ## Usage
 
+### ECMAScript Module
 ```ts
-import { Dpapi } from "@primno/dpapi";
+import { Dpapi, isPlatformSupported } from "@primno/dpapi";
 
-const buffer = Buffer.from("Hello world", "utf-8");
+if (isPlatformSupported) {
+    const buffer = Buffer.from("Hello world", "utf-8");
 
-const encrypted = Dpapi.protectData(buffer, null, "CurrentUser");
-const decrypted = Dpapi.unprotectData(encrypted, null, "CurrentUser");
+    const encrypted = Dpapi.protectData(buffer, null, "CurrentUser");
+    const decrypted = Dpapi.unprotectData(encrypted, null, "CurrentUser");
+}
+else {
+    console.error("Platform not supported. Only Windows is supported (x64, ARM64)");
+}
+```
+
+### CommonJS
+```js
+const { Dpapi, isPlatformSupported } = require("@primno/dpapi");
+
+if (isPlatformSupported) {
+    const buffer = Buffer.from("Hello world", "utf-8");
+
+    const encrypted = Dpapi.protectData(buffer, null, "CurrentUser");
+    const decrypted = Dpapi.unprotectData(encrypted, null, "CurrentUser");
+}
+else {
+    console.error("Platform not supported. Only Windows is supported (x64, ARM64)");
+}
 ```
 
 ## Credits

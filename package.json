@@ -1,6 +1,6 @@
 {
   "name": "@primno/dpapi",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Pre-built version of DPAPI (Data Protection API of Windows). Encrypt and decrypt data.",
   "main": "dist/index.js",
   "files": [
@@ -15,7 +15,7 @@
     "install": "node-gyp-build",
     "build": "tsc && npm run prebuild",
     "rebuild": "npm run install --build-from-source",
-    "prebuild": "prebuildify --napi --strip",
+    "prebuild": "prebuildify --napi --strip --arch x64 && prebuildify --napi --strip --arch arm64",
     "test": "jest --coverage"
   },
   "engines": {
@@ -37,17 +37,17 @@
   },
   "homepage": "https://github.com/primno/dpapi#readme",
   "devDependencies": {
-    "@types/jest": "^29.4.4",
-    "@types/node": "^18.11.9",
-    "jest": "^29.5.0",
-    "node-addon-api": "^6.0.0",
-    "node-gyp": "^9.3.1",
-    "prebuildify": "^5.0.1",
-    "ts-jest": "^29.0.5",
-    "typescript": "^4.9.5"
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
+    "jest": "^29.7.0",
+    "node-addon-api": "^8.3.0",
+    "node-gyp": "^11.0.0",
+    "prebuildify": "^6.0.1",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.2"
   },
   "dependencies": {
-    "node-gyp-build": "^4.6.0"
+    "node-gyp-build": "^4.8.4"
   },
   "author": "Xavier Monin",
   "publishConfig": {

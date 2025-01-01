@@ -1,3 +1,11 @@
+#### 2.0.0 (2025-01-01)
+
+##### Features
+
+*  Add support for arm64 ([03707dd](https://github.com/primno/dpapi/commit/03707dd007a60f4f4abfc423f781e503edbcc92e))
+*  Add platform support flag ([755cb93](https://github.com/primno/dpapi/commit/755cb9326c8254861859aa0219d49fa06aa421d5))
+
+
 #### 1.1.1 (2023-03-25)
 
 ##### Chores
