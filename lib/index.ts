@@ -7,5 +7,38 @@ export interface DpapiBindings {
 
 export type DataProtectionScope = "CurrentUser" | "LocalMachine";
 
-export var Dpapi: DpapiBindings = require("node-gyp-build")(path.join(__dirname, ".."));
+class ErrorWithInnerError extends Error {
+    public innerError: Error;
+
+    constructor(message: string, innerError: Error) {
+        super(message);
+        this.innerError = innerError;
+    }
+}
+
+class UnsupportedPlatformDpapiBindings implements DpapiBindings {
+    private error: Error;
+
+    constructor(error: Error) {
+        this.error = error;
+    }
+
+    protectData(dataToEncrypt: Uint8Array, optionalEntropy: Uint8Array | null, scope: DataProtectionScope): Uint8Array {
+        throw new ErrorWithInnerError("DPAPI is not supported on this platform.", this.error);
+    }
+    unprotectData(encryptData: Uint8Array, optionalEntropy: Uint8Array | null, scope: DataProtectionScope): Uint8Array {
+        throw new ErrorWithInnerError("DPAPI is not supported on this platform.", this.error);
+    }
+}
+
+let dpapi: DpapiBindings;
+
+try {
+    dpapi = require("node-gyp-build")(path.join(__dirname, ".."));
+}
+catch (e: any) {
+    dpapi = new UnsupportedPlatformDpapiBindings(e);
+}
+
+export var Dpapi: DpapiBindings = dpapi;
 export default Dpapi;
