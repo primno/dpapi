@@ -1,14 +1,16 @@
 /*
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
+ * 
+ * Modified by Xavier Monin.
  */
 
-import Dpapi from "../lib";
-import { platform } from "process";
+import { Dpapi, isPlatformSupported } from "../lib";
+import { platform, arch } from "process";
 
-// DPAPI is only available on windows
-if(platform === "win32"){
-    describe('Test DPAPI addon', () => {
+// DPAPI is only available on windows x64 and arm64
+if(platform === "win32" && (arch === "x64" || arch === "arm64")) {
+    describe('Test DPAPI addon on supported platform', () => {
         test('Protect and Unprotect data', () => {
             const data = Buffer.from("DPAPITestString");
 
@@ -33,8 +35,22 @@ if(platform === "win32"){
             const decryptedData = Dpapi.unprotectData(encryptedData, null, "LocalMachine");
             expect(decryptedData).toEqual(data);
         });
+
+        test('Platform support', () => {
+             expect(isPlatformSupported).toBe(true);
+        });
     });
 } else {
-    // Jest require that a .spec.ts file contain at least one test.
-    test("Empty test", () => {});
+    describe('Test DPAPI addon on unsupported platform', () => {
+        test('Platform support', () => {
+            expect(isPlatformSupported).toBe(false);
+        });
+
+        test('Protect and Unprotect data', () => {
+            const data = Buffer.from("DPAPITestString");
+
+            expect(() => Dpapi.protectData(data, null, "CurrentUser")).toThrow("DPAPI is not supported on this platform.");
+            expect(() => Dpapi.unprotectData(data, null, "CurrentUser")).toThrow("DPAPI is not supported on this platform.");
+        });
+    });
 }
