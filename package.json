@@ -1,6 +1,6 @@
 {
   "name": "@primno/dpapi",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Pre-built version of DPAPI (Data Protection API of Windows). Encrypt and decrypt data.",
   "main": "dist/index.js",
   "files": [
@@ -12,7 +12,7 @@
   ],
   "gypfile": true,
   "scripts": {
-    "install": "node-gyp-build",
+    "install": "exit 0",
     "build": "tsc && npm run prebuild",
     "rebuild": "npm run install --build-from-source",
     "prebuild": "prebuildify --napi --strip --arch x64 && prebuildify --napi --strip --arch arm64",
